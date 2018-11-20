@@ -28,7 +28,7 @@ DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
 FSMCodingStyle=eFMSDropDownList_OneProcess
 FSMEncodingStyle=eFMSDropDownList_OneHot
-OutputPath=Project Outputs for Mikrolysreklamen17
+OutputPath=
 LogFolderPath=
 ManagedProjectGUID=
 IncludeDesignInRelease=0
@@ -122,230 +122,6 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=YHGCHREK
 
-[GeneratedDocument1]
-DocumentPath=Project Outputs\Test Points\Assembly Testpoint Report for Mikrolysreklamen17.csv
-DItemRevisionGUID=
-
-[GeneratedDocument2]
-DocumentPath=Project Outputs\Test Points\Assembly Testpoint Report for Mikrolysreklamen17.txt
-DItemRevisionGUID=
-
-[GeneratedDocument3]
-DocumentPath=Project Outputs\BOM\Bill of Materials-Mikrolysreklamen17.xls
-DItemRevisionGUID=
-
-[GeneratedDocument4]
-DocumentPath=Project Outputs\BOM\Bill of Materials Fusion PCBA-Mikrolysreklamen17.xls
-DItemRevisionGUID=
-
-[GeneratedDocument5]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\comp_+_bot\components
-DItemRevisionGUID=
-
-[GeneratedDocument6]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\comp_+_top\components
-DItemRevisionGUID=
-
-[GeneratedDocument7]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\eda\data
-DItemRevisionGUID=
-
-[GeneratedDocument8]
-DocumentPath=Project Outputs for Mikrolysreklamen17\Design Rule Check - Mikrolysreklamen17.html
-DItemRevisionGUID=
-
-[GeneratedDocument9]
-DocumentPath=Project Outputs\Test Points\Fabrication Testpoint Report for Mikrolysreklamen17.csv
-DItemRevisionGUID=
-
-[GeneratedDocument10]
-DocumentPath=Project Outputs\Test Points\Fabrication Testpoint Report for Mikrolysreklamen17.txt
-DItemRevisionGUID=
-
-[GeneratedDocument11]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\bottom_layer\features
-DItemRevisionGUID=
-
-[GeneratedDocument12]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\bottom_overlay\features
-DItemRevisionGUID=
-
-[GeneratedDocument13]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\bottom_paste\features
-DItemRevisionGUID=
-
-[GeneratedDocument14]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\bottom_solder\features
-DItemRevisionGUID=
-
-[GeneratedDocument15]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\comp_+_bot\features
-DItemRevisionGUID=
-
-[GeneratedDocument16]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\comp_+_top\features
-DItemRevisionGUID=
-
-[GeneratedDocument17]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\drill\features
-DItemRevisionGUID=
-
-[GeneratedDocument18]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\internal_plane_1\features
-DItemRevisionGUID=
-
-[GeneratedDocument19]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\internal_plane_2\features
-DItemRevisionGUID=
-
-[GeneratedDocument20]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\keep-out_layer\features
-DItemRevisionGUID=
-
-[GeneratedDocument21]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\mechanical_1\features
-DItemRevisionGUID=
-
-[GeneratedDocument22]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\mechanical_2\features
-DItemRevisionGUID=
-
-[GeneratedDocument23]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\mechanical_3\features
-DItemRevisionGUID=
-
-[GeneratedDocument24]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\mechanical_13\features
-DItemRevisionGUID=
-
-[GeneratedDocument25]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\mechanical_15\features
-DItemRevisionGUID=
-
-[GeneratedDocument26]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\top_layer\features
-DItemRevisionGUID=
-
-[GeneratedDocument27]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\top_overlay\features
-DItemRevisionGUID=
-
-[GeneratedDocument28]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\top_paste\features
-DItemRevisionGUID=
-
-[GeneratedDocument29]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\top_solder\features
-DItemRevisionGUID=
-
-[GeneratedDocument30]
-DocumentPath=Project Outputs\ODB\odb\matrix\matrix
-DItemRevisionGUID=
-
-[GeneratedDocument31]
-DocumentPath=Project Outputs\NC Drill\Mikrolysreklamen17.DRL
-DItemRevisionGUID=
-
-[GeneratedDocument32]
-DocumentPath=Project Outputs\NC Drill\Mikrolysreklamen17.DRR
-DItemRevisionGUID=
-
-[GeneratedDocument33]
-DocumentPath=Project Outputs\AutoCAD PCB\Mikrolysreklamen17.DWG
-DItemRevisionGUID=
-
-[GeneratedDocument34]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.EXTREP
-DItemRevisionGUID=
-
-[GeneratedDocument35]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GBL
-DItemRevisionGUID=
-
-[GeneratedDocument36]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GBO
-DItemRevisionGUID=
-
-[GeneratedDocument37]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GBP
-DItemRevisionGUID=
-
-[GeneratedDocument38]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GBS
-DItemRevisionGUID=
-
-[GeneratedDocument39]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GM1
-DItemRevisionGUID=
-
-[GeneratedDocument40]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GTL
-DItemRevisionGUID=
-
-[GeneratedDocument41]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GTO
-DItemRevisionGUID=
-
-[GeneratedDocument42]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GTP
-DItemRevisionGUID=
-
-[GeneratedDocument43]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GTS
-DItemRevisionGUID=
-
-[GeneratedDocument44]
-DocumentPath=Project Outputs\NC Drill\Mikrolysreklamen17.LDP
-DItemRevisionGUID=
-
-[GeneratedDocument45]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.P1
-DItemRevisionGUID=
-
-[GeneratedDocument46]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.P2
-DItemRevisionGUID=
-
-[GeneratedDocument47]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.REP
-DItemRevisionGUID=
-
-[GeneratedDocument48]
-DocumentPath=Project Outputs\ODB\Mikrolysreklamen17.REP
-DItemRevisionGUID=
-
-[GeneratedDocument49]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.RUL
-DItemRevisionGUID=
-
-[GeneratedDocument50]
-DocumentPath=Project Outputs\ExportSTEP\Mikrolysreklamen17.step
-DItemRevisionGUID=
-
-[GeneratedDocument51]
-DocumentPath=Project Outputs\NC Drill\Mikrolysreklamen17.TXT
-DItemRevisionGUID=
-
-[GeneratedDocument52]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\netlists\cadnet\netlist
-DItemRevisionGUID=
-
-[GeneratedDocument53]
-DocumentPath=Project Outputs\Pick Place\Pick Place for Mikrolysreklamen17.txt
-DItemRevisionGUID=
-
-[GeneratedDocument54]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\profile
-DItemRevisionGUID=
-
-[GeneratedDocument55]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\stephdr
-DItemRevisionGUID=
-
-[GeneratedDocument56]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\drill\tools
-DItemRevisionGUID=
-
 [Configuration1]
 Name=Default Configuration
 ParameterCount=0
@@ -357,7 +133,7 @@ ContentTypeGUID=
 ConfigurationType=
 
 [Generic_EDE]
-OutputDir=Project Outputs for Mikrolysreklamen17
+OutputDir=
 
 [OutputGroup1]
 Name=Netlist Outputs
@@ -468,7 +244,7 @@ OutputDefault20=0
 [OutputGroup2]
 Name=Simulator Outputs
 Description=
-TargetPrinter=NPI81DC5F (HP LaserJet 500 color M551) A3
+TargetPrinter=HP Officejet 4620 series (Network)
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 
 [OutputGroup3]
@@ -937,36 +713,6 @@ OutputName9=Specctra Design PCB
 OutputDocumentPath9=
 OutputVariantName9=
 OutputDefault9=0
-OutputType10=Ansoft Neutral
-OutputName10=Ansoft Neutral (AutoPCB)
-OutputDocumentPath10=
-OutputVariantName10=
-OutputDefault10=0
-OutputType11=HyperLynx
-OutputName11=HyperLynx (AutoPCB)
-OutputDocumentPath11=
-OutputVariantName11=
-OutputDefault11=0
-OutputType12=Orcad v7 Capture Design
-OutputName12=Orcad v7 Capture Design (AutoSCH)
-OutputDocumentPath12=
-OutputVariantName12=
-OutputDefault12=0
-OutputType13=P-CAD ASCII
-OutputName13=P-CAD ASCII (AutoPCB)
-OutputDocumentPath13=
-OutputVariantName13=
-OutputDefault13=0
-OutputType14=P-CAD V16 Schematic Design
-OutputName14=P-CAD V16 Schematic Design (AutoSCH)
-OutputDocumentPath14=
-OutputVariantName14=
-OutputDefault14=0
-OutputType15=SiSoft
-OutputName15=SiSoft (AutoPCB)
-OutputDocumentPath15=
-OutputVariantName15=
-OutputDefault15=0
 
 [OutputGroup10]
 Name=PostProcess Outputs
@@ -1091,11 +837,6 @@ Type108=1
 Type109=1
 Type110=1
 Type111=1
-Type112=1
-Type113=1
-Type114=1
-Type115=1
-Type116=1
 
 [Difference Levels]
 Type1=1
@@ -1160,9 +901,6 @@ Type59=1
 Type60=1
 Type61=1
 Type62=1
-Type63=1
-Type64=1
-Type65=1
 
 [Electrical Rules Check]
 Type1=1
@@ -1286,7 +1024,6 @@ Type118=3
 Type119=3
 MultiChannelAlternate=2
 AlternateItemFail=3
-Type122=2
 
 [ERC Connection Matrix]
 L1=NNNNNNNNNNNWNNNWW
