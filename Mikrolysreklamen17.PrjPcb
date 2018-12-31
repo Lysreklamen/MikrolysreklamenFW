@@ -28,7 +28,7 @@ DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
 FSMCodingStyle=eFMSDropDownList_OneProcess
 FSMEncodingStyle=eFMSDropDownList_OneHot
-OutputPath=
+OutputPath=Project Outputs for Mikrolysreklamen17
 LogFolderPath=
 ManagedProjectGUID=
 IncludeDesignInRelease=0
@@ -121,6 +121,19 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=YHGCHREK
+
+[ProjectVariant1]
+UniqueID=8D8415AA-85C2-4736-8E62-32CB74AA607D
+Description=Default assembly
+AllowFabrication=1
+ParameterCount=0
+VariationCount=5
+Variation1=Designator=M3|UniqueId=\SMIBROOG|Kind=1|AlternatePart= 
+Variation2=Designator=M2|UniqueId=\ELOOYYMU|Kind=1|AlternatePart= 
+Variation3=Designator=M1|UniqueId=\VLOOJMTG|Kind=1|AlternatePart= 
+Variation4=Designator=J1|UniqueId=\LNNOELIF|Kind=1|AlternatePart= 
+Variation5=Designator=P1|UniqueId=\DLAOWDID|Kind=1|AlternatePart= 
+ParamVariationCount=0
 
 [GeneratedDocument1]
 DocumentPath=Project Outputs\Test Points\Assembly Testpoint Report for Mikrolysreklamen17.csv
@@ -255,86 +268,106 @@ DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument34]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GBL
+DocumentPath=Project Outputs\Stencil\Mikrolysreklamen17.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument35]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GBO
+DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument36]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GBP
+DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument37]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GBS
+DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GBP
 DItemRevisionGUID=
 
 [GeneratedDocument38]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GKO
+DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument39]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GM1
+DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GKO
 DItemRevisionGUID=
 
 [GeneratedDocument40]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GTL
+DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GM1
 DItemRevisionGUID=
 
 [GeneratedDocument41]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GTO
+DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GTL
 DItemRevisionGUID=
 
 [GeneratedDocument42]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GTP
+DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GTO
 DItemRevisionGUID=
 
 [GeneratedDocument43]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GTS
+DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GTP
 DItemRevisionGUID=
 
 [GeneratedDocument44]
-DocumentPath=Project Outputs\NC Drill\Mikrolysreklamen17.LDP
+DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.GTS
 DItemRevisionGUID=
 
 [GeneratedDocument45]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.REP
+DocumentPath=Project Outputs\NC Drill\Mikrolysreklamen17.LDP
 DItemRevisionGUID=
 
 [GeneratedDocument46]
-DocumentPath=Project Outputs\ODB\Mikrolysreklamen17.REP
+DocumentPath=Project Outputs\Stencil\Mikrolysreklamen17.P1
 DItemRevisionGUID=
 
 [GeneratedDocument47]
-DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.RUL
+DocumentPath=Project Outputs\Stencil\Mikrolysreklamen17.P2
 DItemRevisionGUID=
 
 [GeneratedDocument48]
-DocumentPath=Project Outputs\ExportSTEP\Mikrolysreklamen17.step
+DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.REP
 DItemRevisionGUID=
 
 [GeneratedDocument49]
-DocumentPath=Project Outputs\NC Drill\Mikrolysreklamen17.TXT
+DocumentPath=Project Outputs\ODB\Mikrolysreklamen17.REP
 DItemRevisionGUID=
 
 [GeneratedDocument50]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\netlists\cadnet\netlist
+DocumentPath=Project Outputs\Stencil\Mikrolysreklamen17.REP
 DItemRevisionGUID=
 
 [GeneratedDocument51]
-DocumentPath=Project Outputs\Pick Place\Pick Place for Mikrolysreklamen17.txt
+DocumentPath=Project Outputs\Gerber\Mikrolysreklamen17.RUL
 DItemRevisionGUID=
 
 [GeneratedDocument52]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\profile
+DocumentPath=Project Outputs\Stencil\Mikrolysreklamen17.RUL
 DItemRevisionGUID=
 
 [GeneratedDocument53]
-DocumentPath=Project Outputs\ODB\odb\steps\pcb\stephdr
+DocumentPath=Project Outputs\ExportSTEP\Mikrolysreklamen17.step
 DItemRevisionGUID=
 
 [GeneratedDocument54]
+DocumentPath=Project Outputs\NC Drill\Mikrolysreklamen17.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument55]
+DocumentPath=Project Outputs\ODB\odb\steps\pcb\netlists\cadnet\netlist
+DItemRevisionGUID=
+
+[GeneratedDocument56]
+DocumentPath=Project Outputs\Pick Place\Pick Place for Mikrolysreklamen17.txt
+DItemRevisionGUID=
+
+[GeneratedDocument57]
+DocumentPath=Project Outputs\ODB\odb\steps\pcb\profile
+DItemRevisionGUID=
+
+[GeneratedDocument58]
+DocumentPath=Project Outputs\ODB\odb\steps\pcb\stephdr
+DItemRevisionGUID=
+
+[GeneratedDocument59]
 DocumentPath=Project Outputs\ODB\odb\steps\pcb\layers\drill\tools
 DItemRevisionGUID=
 
@@ -349,7 +382,7 @@ ContentTypeGUID=
 ConfigurationType=
 
 [Generic_EDE]
-OutputDir=
+OutputDir=Project Outputs for Mikrolysreklamen17
 
 [OutputGroup1]
 Name=Netlist Outputs
