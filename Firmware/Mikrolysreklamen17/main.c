@@ -6,6 +6,7 @@
  */ 
 
 #include <avr/io.h>
+#include <avr/delay.h>
 #include "Mikrolysreklamen.h"
 #include "apa102.h"
 
@@ -14,7 +15,8 @@
 #define DATA_PIN 5
 
 void setup( void );
-
+void clear(uint8_t framebuffer[][3]);
+void fill(uint8_t framebuffer[][3], uint8_t val);
 
 int main(void)
 {
@@ -22,29 +24,34 @@ int main(void)
 	setupapa();
 	
 	uint8_t framebuffer[NUM_LEDS][3];
-	
-	for(uint8_t j=0; j<82; j++){
-		for (uint8_t i=0; i<3; i++){
-			//if(i == 0){
-				framebuffer[j][i] = 0x00;
-			//} else {
-			//	framebuffer[j][i] = 0x00;
-			//}
-		}
-	}
-	
+	clear(framebuffer);
 	pushframe(framebuffer, 1);
 	
-	framebuffer[0][RED] = 0xF0;
-	framebuffer[1][GREEN] = 0xF0;
-	framebuffer[2][RED] = 0xF0;
-	
 	while (1) {
-		pushframe(framebuffer, 1);
+		for(uint8_t i = 0; i<3; i++){
+			_delay_ms(1000);
+			clear(framebuffer);
+			for(uint8_t j=0; j<NUM_LEDS; j++){
+				framebuffer[j][i] = 0x40;
+			}
+			pushframe(framebuffer, 1);
+		}
 	}
 }
 
 void setup ( void ) {
 	// Select internal 32MHz Oscillator as clock source
 	//OSC.CTRL = 0b001;
+}
+
+void clear(uint8_t framebuffer[][3]){
+	fill(framebuffer, 0x00);
+}
+
+void fill(uint8_t framebuffer[][3], uint8_t val){
+	for(uint8_t j=0; j<NUM_LEDS; j++){
+		for (uint8_t i=0; i<3; i++){
+			framebuffer[j][i] = val;
+		}
+	}
 }
