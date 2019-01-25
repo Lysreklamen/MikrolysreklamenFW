@@ -14,6 +14,7 @@
 #define CLK_PIN 7
 #define DATA_PIN 5
 
+
 void setup( void );
 void clear(uint8_t framebuffer[][3]);
 void fill(uint8_t framebuffer[][3], uint8_t val);
@@ -27,14 +28,20 @@ int main(void)
 	clear(framebuffer);
 	pushframe(framebuffer, 1);
 	
+	uint16_t * eeprompointer = MAPPED_EEPROM_START;
+	
 	while (1) {
 		for(uint8_t i = 0; i<3; i++){
 			_delay_ms(1000);
-			clear(framebuffer);
-			for(uint8_t j=0; j<NUM_LEDS; j++){
-				framebuffer[j][i] = 0x40;
+			//clear(framebuffer);
+			//for(uint8_t j=0; j<NUM_LEDS; j++){
+			//	framebuffer[j][i] = 0x40;
+			//}
+			for(int i=0; i<NUM_LEDS; i++){
+				framebuffer[(i/3)][i%3] = (eeprompointer + i);
 			}
 			pushframe(framebuffer, 1);
+			eeprompointer += NUM_LEDS;
 		}
 	}
 }
@@ -42,6 +49,7 @@ int main(void)
 void setup ( void ) {
 	// Select internal 32MHz Oscillator as clock source
 	//OSC.CTRL = 0b001;
+	NVM.CTRLB |= (1 << 3); // Set EEPROM to memory mapped access
 }
 
 void clear(uint8_t framebuffer[][3]){
