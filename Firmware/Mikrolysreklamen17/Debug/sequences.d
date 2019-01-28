@@ -11,7 +11,7 @@ sequences.d sequences.o: .././sequences.c \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\xmega.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\lock.h \
- .././Mikrolysreklamen.h .././bulbgroup.h .././effects.h
+ .././Mikrolysreklamen.h .././bulbgroup.h .././api.h .././effects.h
 
 c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -40,5 +40,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\avr8\avr8-gnu-toolchain\avr\
 .././Mikrolysreklamen.h:
 
 .././bulbgroup.h:
+
+.././api.h:
 
 .././effects.h:

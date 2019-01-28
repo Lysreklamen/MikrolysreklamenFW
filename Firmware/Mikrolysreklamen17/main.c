@@ -35,6 +35,8 @@ int main(void)
 	setupapa();
 	
 	while (1) {
+		sequence_letterDemo();
+		sequence_digitDemo();
 		sequence_AuroraDemo();
 		//sequence_Glitter();
 		//sequence_rgbFadeDemo();

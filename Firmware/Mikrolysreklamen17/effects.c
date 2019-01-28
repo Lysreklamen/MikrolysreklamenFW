@@ -12,7 +12,7 @@
 #include "api.h"
 #include "effects.h"
 
-void effect_aurora(uint8_t* bulbGroup, uint8_t numBulbs, uint8_t color[3], uint8_t time, uint8_t fade, uint8_t nChangeBulbs, uint8_t minBrightness) {
+void effect_aurora(uint8_t* bulbGroup, uint8_t color[3], uint8_t time, uint8_t fade, uint8_t nChangeBulbs, uint8_t minBrightness) {
 	// uint8_t *bulbGroup;
 	// uint8_t color [3];
 	// uint8_t time;
@@ -21,13 +21,14 @@ void effect_aurora(uint8_t* bulbGroup, uint8_t numBulbs, uint8_t color[3], uint8
 	// uint8_t minBrightness;
 	
 	uint8_t nRepeats = (uint8_t)( time / fade );
+	uint8_t numBulbs = bulbGroup[0];
 	
 	for (uint8_t j = 0; j < nRepeats; j++) {
 		for (uint8_t i = 0; i < nChangeBulbs; i++) {
-			uint8_t nextBulbIdx = rand() % numBulbs;
+			uint8_t nextBulbIdx = (rand() % numBulbs) + 1;
 			uint8_t nextBulb = bulbGroup[nextBulbIdx];
-			volatile uint8_t nextBrightness = rand() % 255;
-			volatile uint8_t colorbuffer[3];
+			uint8_t nextBrightness = rand() % 255;
+			uint8_t colorbuffer[3];
 			while (nextBrightness <= minBrightness) {
 				nextBrightness = rand() % 255;
 			}
@@ -72,4 +73,19 @@ void effect_RGBFade(uint8_t bulb, uint8_t endColor[3], uint8_t frames) {
 		next();
 	}
 	*bufferIterator = bufferIterator_start;
+}
+
+void effect_fill_group(uint8_t* bulbGroup, uint8_t *color, uint8_t frames){
+	uint8_t numBulbs = bulbGroup[0];
+	
+	for(uint8_t j=0; j<numBulbs; j++){
+		uint8_t bufferIterator_start = *bufferIterator;
+		for (uint8_t frame=0; frame<frames; frame++){
+			for(uint8_t i=0; i<3; i++){
+				sequenceBuffer[frame][bulbGroup[j+1]][i] = color[i];
+			}
+			next();
+		}
+		*bufferIterator = bufferIterator_start;
+	}
 }
