@@ -4,5 +4,11 @@
 
 apa102.c
 
+api.c
+
+effects.c
+
 main.c
+
+sequences.c
 

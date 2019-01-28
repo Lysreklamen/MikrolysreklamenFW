@@ -66,3 +66,14 @@ void pushframe(uint8_t framebuffer[][3], uint8_t brightness){
 	}
 	endframe(NUM_LEDS);
 }
+
+void pushframe_global(uint8_t frame, uint8_t brightness){
+	startframe();
+	for(uint8_t i=0; i<NUM_LEDS; i++){
+		bitbangbonanza(0b11100000 | brightness); // Brightness
+		bitbangbonanza(sequenceBuffer[frame][i][BLUE]); // B
+		bitbangbonanza(sequenceBuffer[frame][i][GREEN]); // G
+		bitbangbonanza(sequenceBuffer[frame][i][RED]); // R
+	}
+	endframe(NUM_LEDS);
+}

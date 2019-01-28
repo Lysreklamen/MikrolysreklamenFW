@@ -5,60 +5,71 @@
  *  Author: Oystein
  */ 
 
+#include <avr/io.h>
+#include <util/delay.h>
+#include <stdlib.h>
+#include "Mikrolysreklamen.h"
+#include "api.h"
 #include "effects.h"
 
-import darkness.generator.api.BulbSet;
-import darkness.generator.api.BulbGroup;
-import darkness.generator.api.BulbRGB;
-
-import java.awt.Color;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Random;
-
-public class Aurora extends EffectBase {
-	private final BulbGroup bulbGroup;
-	private final Color color;
-	private final int time; // in seconds
-	private final int fade; // in frames
-	private final int nChangeBulbs; // number of bulbs that possibly change between blocks
-	private final float minBrightness;
-	private final Random rnd;
-
-	public Aurora(BulbGroup bulbGroup, Color color, int time, int fade, int nChangeBulbs, float minBrightness) {
-		this.bulbGroup = bulbGroup;
-		this.color = color;
-		this.time = time;
-		this.fade = fade;
-		this.nChangeBulbs = nChangeBulbs;
-		this.minBrightness = minBrightness;
-		this.rnd = new Random(1337);
-	}
-
-	@Override
-	public void run() {
-		float[] hsb_vals = Color.RGBtoHSB(color.getRed(), color.getGreen(), color.getBlue(), null);
-
-		int nRepeats = time * 20 / fade;
-
-		for (int j = 0; j < nRepeats; j++) {
-			for (int i = 0; i < nChangeBulbs; i++) {
-				int nextBulbIdx = rnd.nextInt(bulbGroup.numBulbs);
-				BulbRGB nextBulb = bulbGroup.getBulb(nextBulbIdx);
-				float nextBrightness = rnd.nextFloat();
-				while (nextBrightness <= minBrightness) {
-					nextBrightness = rnd.nextFloat();
-				}
-				Color c = Color.getHSBColor(hsb_vals[0], hsb_vals[1], nextBrightness);
-				rgbFade(nextBulb, c, fade);
+void effect_aurora(uint8_t* bulbGroup, uint8_t numBulbs, uint8_t color[3], uint8_t time, uint8_t fade, uint8_t nChangeBulbs, uint8_t minBrightness) {
+	// uint8_t *bulbGroup;
+	// uint8_t color [3];
+	// uint8_t time;
+	// uint8_t fade;
+	// uint8_t nChangeBulbs;
+	// uint8_t minBrightness;
+	
+	uint8_t nRepeats = (uint8_t)( time / fade );
+	
+	for (uint8_t j = 0; j < nRepeats; j++) {
+		for (uint8_t i = 0; i < nChangeBulbs; i++) {
+			uint8_t nextBulbIdx = rand() % numBulbs;
+			uint8_t nextBulb = bulbGroup[nextBulbIdx];
+			volatile uint8_t nextBrightness = rand() % 255;
+			volatile uint8_t colorbuffer[3];
+			while (nextBrightness <= minBrightness) {
+				nextBrightness = rand() % 255;
 			}
-			skip(fade);
+			for(uint8_t k=0; k<3; k++){
+				colorbuffer[k] = (color[k]*nextBrightness) / 255; // TBD do proper HSI brightness adjustment
+			}
+			effect_RGBFade(nextBulb, colorbuffer, fade);
 		}
+		skip(fade);
+	}
+}
+
+void effect_RGBFade(uint8_t bulb, uint8_t endColor[3], uint8_t frames) {
+	uint8_t bufferIterator_start = *bufferIterator;
+	uint8_t startColor[3] = {sequenceBuffer[*bufferIterator][bulb][BLUE],
+							 sequenceBuffer[*bufferIterator][bulb][GREEN],
+							 sequenceBuffer[*bufferIterator][bulb][RED]};
+	volatile uint8_t delta_r, delta_g, delta_b;
+	
+	if (endColor[RED] > startColor[RED]) {
+		delta_r = (endColor[RED]   - startColor[RED])   / frames;
+	} else {
+		delta_r = 0;
+	}
+	if (endColor[GREEN] > startColor[GREEN]) {
+		delta_g = (endColor[GREEN] - startColor[GREEN]) / frames;
+		} else {
+		delta_g = 0;
+	}
+	if (endColor[BLUE] > startColor[BLUE]) {
+		delta_b = (endColor[BLUE]  - startColor[BLUE])  / frames;
+		} else {
+		delta_b = 0;
 	}
 
-	@Override
-	public String toString() {
-		return "Effect Aurora";
+	for(uint8_t frame = 1; frame <= frames; frame++) { // && !isCancelled()
+		uint8_t red   = (startColor[RED]   + (uint8_t)(delta_r*frame));
+		uint8_t green = (startColor[GREEN] + (uint8_t)(delta_g*frame));
+		uint8_t blue  = (startColor[BLUE]  + (uint8_t)(delta_b*frame));
+
+		bulb_setRGB(bulb, red, green, blue);
+		next();
 	}
+	*bufferIterator = bufferIterator_start;
 }

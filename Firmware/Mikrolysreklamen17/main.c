@@ -5,10 +5,13 @@
  * Author : medlem
  */ 
 
-#include <avr/io.h>
-#include <avr/delay.h>
 #include "Mikrolysreklamen.h"
 #include "apa102.h"
+#include "api.h"
+#include "effects.h"
+#include "sequences.h"
+#include <avr/io.h>
+#include <util/delay.h>
 
 #define APA_PORT PORTD
 #define CLK_PIN 7
@@ -16,33 +19,25 @@
 
 
 void setup( void );
-void clear(uint8_t framebuffer[][3]);
-void fill(uint8_t framebuffer[][3], uint8_t val);
+
+//volatile uint8_sequencebuffer_t sequenceBufferA;
+//volatile uint8_sequencebuffer_t sequenceBufferB;
+
+volatile uint8_t bufferIteratorA = 0;
+volatile uint8_t bufferIteratorB = 0;
+
+volatile uint8_sequencebuffer_t sequenceBuffer;
+volatile uint8_t *bufferIterator;
 
 int main(void)
 {
 	setup();
 	setupapa();
 	
-	uint8_t framebuffer[NUM_LEDS][3];
-	clear(framebuffer);
-	pushframe(framebuffer, 1);
-	
-	uint16_t * eeprompointer = MAPPED_EEPROM_START;
-	
 	while (1) {
-		for(uint8_t i = 0; i<3; i++){
-			_delay_ms(1000);
-			//clear(framebuffer);
-			//for(uint8_t j=0; j<NUM_LEDS; j++){
-			//	framebuffer[j][i] = 0x40;
-			//}
-			for(int i=0; i<NUM_LEDS; i++){
-				framebuffer[(i/3)][i%3] = (eeprompointer + i);
-			}
-			pushframe(framebuffer, 1);
-			eeprompointer += NUM_LEDS;
-		}
+		sequence_AuroraDemo();
+		//sequence_Glitter();
+		//sequence_rgbFadeDemo();
 	}
 }
 
@@ -50,16 +45,9 @@ void setup ( void ) {
 	// Select internal 32MHz Oscillator as clock source
 	//OSC.CTRL = 0b001;
 	NVM.CTRLB |= (1 << 3); // Set EEPROM to memory mapped access
-}
-
-void clear(uint8_t framebuffer[][3]){
-	fill(framebuffer, 0x00);
-}
-
-void fill(uint8_t framebuffer[][3], uint8_t val){
-	for(uint8_t j=0; j<NUM_LEDS; j++){
-		for (uint8_t i=0; i<3; i++){
-			framebuffer[j][i] = val;
-		}
-	}
+	
+	
+	srand(1337 % 255);
+	
+	bufferIterator = &bufferIteratorA;
 }
