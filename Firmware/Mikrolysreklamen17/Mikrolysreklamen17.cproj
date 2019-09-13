@@ -181,6 +181,33 @@
     <Compile Include="effects.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="ff\diskio.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\diskio.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\ff.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\ff.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\ffconf.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\ffsystem.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\ffunicode.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\mmc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ff\mmc.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
@@ -193,6 +220,9 @@
     <Compile Include="sequences.h">
       <SubType>compile</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ff" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

@@ -1,0 +1,23 @@
+#pragma once
+/* Card type flags (CardType) */
+#define CT_MMC    0x01    /* MMC ver 3 */
+#define CT_SD1    0x02    /* SD ver 1 */
+#define CT_SD2    0x04    /* SD ver 2 */
+#define CT_SDC    (CT_SD1|CT_SD2) /* SD */
+#define CT_BLOCK  0x08    /* Block addressing */
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+//#include "diskio.h"
+
+#define MMC_SPI_PORT C
+#define MMC_CS_PORT C
+#define MMC_CS_BIT 4
+
+extern void disk_timerproc (void);
+
+#ifdef __cplusplus
+}
+#endif

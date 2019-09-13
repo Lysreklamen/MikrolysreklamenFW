@@ -10,6 +10,8 @@
 #include "api.h"
 #include "effects.h"
 #include "sequences.h"
+#include "ff/ff.h"
+#include "ff/diskio.h"
 #include <avr/io.h>
 #include <util/delay.h>
 
@@ -17,6 +19,7 @@
 #define CLK_PIN 7
 #define DATA_PIN 5
 
+FATFS FatFs;
 
 void setup( void );
 
@@ -35,9 +38,9 @@ int main(void)
 	setupapa();
 	
 	while (1) {
-		sequence_letterDemo();
-		sequence_digitDemo();
-		sequence_AuroraDemo();
+		//sequence_letterDemo();
+		//sequence_digitDemo();
+		//sequence_AuroraDemo();
 		//sequence_Glitter();
 		//sequence_rgbFadeDemo();
 	}
@@ -52,4 +55,24 @@ void setup ( void ) {
 	srand(1337 % 255);
 	
 	bufferIterator = &bufferIteratorA;
+}
+
+void sdcardtest(){
+	FIL fil;
+	char line[100];
+	FRESULT fr;
+	
+	/* Register work area to the default drive */
+	f_mount(&FatFs, "", 0);
+
+	/* Open a text file */
+	fr = f_open(&fil, "message.txt", FA_READ);
+	if (fr) return (int)fr;
+	
+	f_putc("a", &fr);
+
+	/* Close the file */
+	f_close(&fil);
+
+	return 0;
 }
