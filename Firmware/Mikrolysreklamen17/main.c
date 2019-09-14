@@ -44,7 +44,10 @@ int main(void)
 	setupapa();
 	setup_rtc();
 	sei();
-	sdcardtest();
+	//sdcardtest();
+	
+	/* Register work area to the default drive */
+	f_mount(&FatFs, "", 0);
 	
 	while (1) {
 		//sequence_letterDemo();
