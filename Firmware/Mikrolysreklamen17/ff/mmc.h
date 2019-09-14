@@ -12,9 +12,7 @@ extern "C" {
 
 //#include "diskio.h"
 
-#define MMC_SPI_PORT C
-#define MMC_CS_PORT C
-#define MMC_CS_BIT 4
+void setup_mmc( void );
 
 extern void disk_timerproc (void);
 

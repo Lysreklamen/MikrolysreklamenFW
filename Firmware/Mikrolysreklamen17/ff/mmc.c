@@ -10,7 +10,12 @@
 #include <avr/sfr_defs.h>
 #include "diskio.h"
 #include "mmc.h"
+#include "../Mikrolysreklamen.h"
 
+
+#define MMC_SPI_PORT C
+#define MMC_CS_PORT C
+#define MMC_CS_BIT 4
 
 /*--------------------------------------------------------------------------
 
@@ -64,9 +69,10 @@
 static volatile
 DSTATUS Stat = STA_NOINIT;  /* Disk status */
 
+/*
 static volatile
-BYTE Timer1, Timer2;  /* 100Hz decrement timer */
-
+BYTE Timer1, Timer2;  // 100Hz decrement timer
+*/
 static
 BYTE CardType;      /* Card type flags */
 

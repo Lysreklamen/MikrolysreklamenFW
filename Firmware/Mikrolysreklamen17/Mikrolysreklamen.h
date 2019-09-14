@@ -23,7 +23,7 @@
 #define GREEN 1
 #define BLUE 2
 
-#define AVAIL_MEM 16
+#define AVAIL_MEM 8
 #define BUFFERSIZE  AVAIL_MEM
 
 typedef uint8_t uint8_sequencebuffer_t[BUFFERSIZE][NUM_LEDS][3];
@@ -34,5 +34,8 @@ volatile extern uint8_t bufferIteratorA;
 volatile extern uint8_t bufferIteratorB;
 
 volatile extern uint8_t *bufferIterator;
+
+volatile extern uint8_t Timer1;
+volatile extern uint8_t Timer2;  /* 100Hz decrement timer */
 
 #endif /* MIKROLYSREKLAMEN_H_ */
