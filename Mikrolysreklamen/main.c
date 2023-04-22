@@ -10,6 +10,7 @@
 #include "api.h"
 #include "effects.h"
 #include "sequences.h"
+#include "pgmplayer.h"
 #include "ff/ff.h"
 #include "ff/diskio.h"
 #include <avr/io.h>
@@ -23,7 +24,7 @@
 FATFS FatFs;
 
 void setup( void );
-void sdcardtest( void );
+uint8_t sdcardtest( void );
 void setup_rtc( void );
 
 //volatile uint8_sequencebuffer_t sequenceBufferA;
@@ -44,14 +45,15 @@ int main(void)
 	setupapa();
 	setup_rtc();
 	sei();
-	//sdcardtest();
+	sdcardtest();
+	write_fw_version();
 	
 	/* Register work area to the default drive */
 	f_mount(&FatFs, "", 0);
 	
 	while (1) {
-		//sequence_letterDemo();
-		//sequence_digitDemo();
+		sequence_letterDemo();
+		sequence_digitDemo();
 		//sequence_AuroraDemo();
 		//sequence_Glitter();
 		//sequence_rgbFadeDemo();
@@ -72,7 +74,7 @@ void setup ( void ) {
 	PORTC.DIR = (1 << 4) | (1 << 5) | (1 << 7);
 }
 
-void sdcardtest(){
+uint8_t sdcardtest(){
 	FIL fil;
 	char line[100];
 	volatile FRESULT fr;
@@ -85,11 +87,29 @@ void sdcardtest(){
 	if (fr) return (int)fr;
 	
 	//f_putc("a", &fr);
+	
+	line[0] = 'a';
+	UINT bw = 0;
+	
+	f_write(&fil, line, 1, &bw);
 
 	/* Close the file */
 	f_close(&fil);
 
 	return 0;
+}
+
+/* Writes the FW version (stored in define) to a file on the SD card for debugging (without a debugger) purposes */
+void write_fw_version(void){
+	FIL fil;
+	volatile FRESULT fr;
+	UINT bw = 0;
+	f_mount(&FatFs, "", 0);
+	fr = f_open(&fil, "fw_version.txt", FA_READ | FA_WRITE | FA_OPEN_ALWAYS);
+	if (fr) return (int)fr;
+	char line[] = FW_VERSION;
+	f_write(&fil, line, FW_VERSION_LEN, &bw);
+	f_close(&fil);
 }
 
 void setup_rtc( void ){
