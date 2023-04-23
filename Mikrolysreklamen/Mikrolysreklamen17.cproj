@@ -29,19 +29,19 @@
     <eraseonlaunchrule>0</eraseonlaunchrule>
     <EraseKey />
     <AsfFrameworkConfig>
-      <framework-data xmlns="">
+      <framework-data>
         <options />
         <configurations />
         <files />
         <documentation help="" />
         <offline-documentation help="" />
         <dependencies>
-          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.35.1" />
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.39.0" />
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
     <avrtool>com.atmel.avrdbg.tool.atmelice</avrtool>
-    <avrtoolserialnumber>J41800039580</avrtoolserialnumber>
+    <avrtoolserialnumber>J41800004247</avrtoolserialnumber>
     <avrdeviceexpectedsignature>0x1E9646</avrdeviceexpectedsignature>
     <custom>
       <ToolOptions>
@@ -76,7 +76,7 @@
         <InterfaceName>PDI</InterfaceName>
       </ToolOptions>
       <ToolType>com.atmel.avrdbg.tool.atmelice</ToolType>
-      <ToolNumber>J41800039580</ToolNumber>
+      <ToolNumber>J41800004247</ToolNumber>
       <ToolName>Atmel-ICE</ToolName>
     </com_atmel_avrdbg_tool_atmelice>
     <avrtoolinterfaceclock>4000000</avrtoolinterfaceclock>
@@ -212,6 +212,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Mikrolysreklamen.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="pgmplayer.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="pgmplayer.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="sequences.c">
