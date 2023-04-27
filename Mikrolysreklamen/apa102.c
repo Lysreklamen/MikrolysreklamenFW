@@ -66,7 +66,7 @@ void pushframe(uint8_t framebuffer[][3], uint8_t brightness){
 	}
 	endframe(NUM_LEDS);
 }
-
+/*
 void pushframe_global(uint8_t frame, uint8_t brightness){
 	startframe();
 	for(uint8_t i=0; i<NUM_LEDS; i++){
@@ -77,3 +77,4 @@ void pushframe_global(uint8_t frame, uint8_t brightness){
 	}
 	endframe(NUM_LEDS);
 }
+*/

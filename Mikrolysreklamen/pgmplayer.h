@@ -17,10 +17,10 @@
 #define PGM_FILE_ERROR 2
 
 
-uint8_t pgm_player( uint8_framebuffer_t* );
+uint8_t pgm_player( void );
 uint8_t pgm_read_playlist( FIL* playlist, FIL* sequence );
 uint8_t pgm_read_preamble(FIL* file);
-uint8_t pgm_read_sequence_frame( FIL* sequence, uint8_framebuffer_t* );
+uint8_t pgm_read_sequence_frame( FIL* sequence);
 
 
 #endif /* PGMPLAYER_H_ */

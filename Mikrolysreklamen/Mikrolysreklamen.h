@@ -33,7 +33,7 @@
 typedef uint8_t uint8_sequencebuffer_t[BUFFERSIZE][NUM_LEDS][3];
 typedef uint8_t uint8_framebuffer_t[NUM_LEDS][3];
 
-volatile extern uint8_sequencebuffer_t sequenceBuffer;
+//volatile extern uint8_sequencebuffer_t sequenceBuffer;
 volatile extern uint8_framebuffer_t frameBuffer;
 
 volatile extern uint8_t bufferIteratorA;

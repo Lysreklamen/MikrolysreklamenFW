@@ -12,9 +12,9 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-uint16_t bulbMapping[NUM_LEDS][3] = {{0, 1, 2},
-{3, 4, 5},
-{6, 7, 8},
+uint16_t bulbMapping[NUM_LEDS][3] = {{200, 300, 400},
+{201, 301, 401},
+{202, 302, 402},
 {203, 303, 403},
 {204, 304, 404},
 {205, 305, 405},
@@ -96,7 +96,7 @@ uint16_t bulbMapping[NUM_LEDS][3] = {{0, 1, 2},
 {295, 395, 495}
 };
 
-uint8_t pgm_player(uint8_framebuffer_t* frameBuffer){
+uint8_t pgm_player(){
 	FIL playlist;
 	FIL sequence;
 	volatile FRESULT fr;
@@ -108,7 +108,7 @@ uint8_t pgm_player(uint8_framebuffer_t* frameBuffer){
 	res = pgm_read_preamble(&sequence);
 	if (res) return res;
 	
-	while( pgm_read_sequence_frame(&sequence, frameBuffer) == PGM_LINE_READ_SUCCESSFULLY){
+	while( pgm_read_sequence_frame(&sequence) == PGM_LINE_READ_SUCCESSFULLY){
 		pushframe(frameBuffer, 1);
 	}
 	
@@ -149,7 +149,7 @@ uint8_t pgm_read_playlist( FIL* playlist, FIL* sequence ){
 		i++;
 	}
 	/* Rewind read/write pointer the number of bytes read minus i */
-	//fr = f_lseek(&playlist, f_tell(&playlist) - (br-i));
+	//fr = f_lseek(playlist, f_tell(playlist) - (br-i));
 	if (fr) return (int)fr;
 	
 	fr = f_open(sequence, buffer, FA_READ);
@@ -178,7 +178,7 @@ uint8_t pgm_read_preamble(FIL* file){
 }
 
 // Takes a sequence file FIL, and a pointer to the frame buffer as input
-uint8_t pgm_read_sequence_frame(FIL* file, uint8_framebuffer_t* frameBuffer){
+uint8_t pgm_read_sequence_frame(FIL* file){
 	UINT br; // Number of bytes read
 	volatile FRESULT fr;
 	uint8_t buffer[512];
@@ -195,39 +195,59 @@ uint8_t pgm_read_sequence_frame(FIL* file, uint8_framebuffer_t* frameBuffer){
 	uint8_t dmxbyte = 0;
 	uint8_t bulbNo = 0;
 	uint8_t bulbChannelNo = 0;
-	//fr = f_read(file, &buffer, 400, &br);
-	//if (fr) return PGM_FILE_ERROR;
 	while (!linefeed) {
-		fr = f_read(file, &character, 1, &br);
-		if (fr) return PGM_FILE_ERROR;
-		if (character == '\n') {
-			linefeed = 1;
-			return PGM_LINE_READ_SUCCESSFULLY;
-		} else if (character == ' ') { // Then we have read the ascii for one byte
-			pgmbyteno++;
-			if (pgmbyteno > 77){
-				foo++;
-			}
-			if (pgmbyteno >= nextvalidpgmbyte) { // Skip the unused bytes in the pgm file
-				dmxbyte = 0;
-				// convert to byte
-				for (uint8_t j=0; j<i; j++){
-					dmxbyte += bytebuffer[j] * pow(10, i-j);
-				}
-				*frameBuffer[bulbNo][bulbChannelNo] = dmxbyte;
+		fr = f_read(file, &buffer, 512, &br);
+		if (fr == FR_INVALID_OBJECT){
+			fr = f_open(file, "Pride.pgm", FA_READ);
+		} else if (fr){
+			return PGM_FILE_ERROR;
+		}
+		if (br < 512){
+			return 0;
+		}
+		for (uint16_t j=0; j<512; j++){
+			character = buffer[j];
+			if (character == '\n') {
+				linefeed = 1;
+				// Rewind read/write pointer the number of bytes read minus j -1 (skip the newline)
+				fr = f_lseek(file, f_tell(file) - (br-j-1));
+				if (fr) return (int)fr;
+				return PGM_LINE_READ_SUCCESSFULLY;
+			} else if (character == ' ') { // Then we have read the ascii for one byte
+				pgmbyteno++;
+				if (pgmbyteno == nextvalidpgmbyte) { // Skip the unused bytes in the pgm file
+					dmxbyte = 0;
+					// convert to byte
+					for (uint8_t k=0; k<i; k++){
+						dmxbyte += bytebuffer[k] * pow(10, i-k);
+					}
+					frameBuffer[bulbNo][bulbChannelNo] = dmxbyte;
+					//frameBuffer[bulbNo][bulbChannelNo] = 0xff;
 			
-				if (bulbChannelNo < BULBCHANNELS) {
-					bulbChannelNo++;
-				} else{
-					bulbChannelNo = 0;
-					bulbNo++;
+					if (bulbNo < (NUM_LEDS-1)) {
+						bulbNo++;
+					} else{
+						bulbNo = 0;
+						bulbChannelNo++;
+						if (bulbChannelNo > (BULBCHANNELS-1)){
+							bulbChannelNo = 0;
+						}
+					}
+					/*
+					if (bulbChannelNo < BULBCHANNELS) {
+						bulbChannelNo++;
+					} else{
+						bulbChannelNo = 0;
+						bulbNo++;
+					}
+					*/
+					nextvalidpgmbyte = bulbMapping[bulbNo][bulbChannelNo];
 				}
-				nextvalidpgmbyte = bulbMapping[bulbNo][bulbChannelNo];
 				i = 0;
+			} else {
+				bytebuffer[i] = character - '0';
+				i++;
 			}
-		} else {
-			bytebuffer[i] = character - '0';
-			i++;
 		}
 	}
 	return foo;

@@ -7,8 +7,8 @@
 
 #include "Mikrolysreklamen.h"
 #include "apa102.h"
-#include "api.h"
-#include "effects.h"
+//#include "api.h"
+//#include "effects.h"
 #include "sequences.h"
 #include "pgmplayer.h"
 #include "ff/ff.h"
@@ -63,7 +63,7 @@ int main(void)
 	*/
 	pushframe(frameBuffer, 1);
 	while (1) {
-		pgm_player(&frameBuffer);
+		pgm_player();
 		//sequence_letterDemo();
 		//sequence_digitDemo();
 		//sequence_AuroraDemo();

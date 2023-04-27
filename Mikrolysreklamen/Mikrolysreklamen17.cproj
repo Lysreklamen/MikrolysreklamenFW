@@ -166,19 +166,7 @@
     <Compile Include="apa102.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="api.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="api.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="bulbgroup.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="effects.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="effects.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="ff\diskio.c">
