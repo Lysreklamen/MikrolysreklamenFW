@@ -43,6 +43,7 @@ volatile uint8_framebuffer_t frameBuffer;
 
 int main(void)
 {
+	setup_clk();
 	setup();
 	setupapa();
 	setup_rtc();
@@ -73,8 +74,6 @@ int main(void)
 }
 
 void setup ( void ) {
-	// Select internal 32MHz Oscillator as clock source
-	//OSC.CTRL = 0b001;
 	NVM.CTRLB |= (1 << 3); // Set EEPROM to memory mapped access
 	
 	
@@ -134,6 +133,14 @@ void setup_rtc( void ){
 	RTC_COMP = 10;
 	
 	PMIC_CTRL |= PMIC_HILVLEN_bm | PMIC_MEDLVLEN_bm | PMIC_LOLVLEN_bm; // Enable global interrupts
+}
+
+void setup_clk( void ){
+	OSC_CTRL |= OSC_RC32MEN_bm; // Enable internal 32MHz oscillator
+	while ((OSC_STATUS & OSC_RC32MRDY_bm) == 0)
+	;  // wait for oscillator to finish starting.
+	CPU_CCP = CCP_IOREG_gc;  // tickle the Configuration Change Protection Register
+	CLK_CTRL = CLK_SCLKSEL_RC32M_gc;   // select the 32MHz oscillator as system clock.
 }
 
 ISR(RTC_COMP_vect){
