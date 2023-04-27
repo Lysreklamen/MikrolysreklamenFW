@@ -103,13 +103,14 @@ uint8_t pgm_player(){
 	uint8_t res = 0;
 	fr = f_open(&playlist, "playlist.txt", FA_READ);
 	if (fr) return (int)fr;
-	res = pgm_read_playlist(&playlist, &sequence);
-	if (res) return res;
-	res = pgm_read_preamble(&sequence);
-	if (res) return res;
 	
-	while( pgm_read_sequence_frame(&sequence) == PGM_LINE_READ_SUCCESSFULLY){
-		pushframe(frameBuffer, 1);
+	while(pgm_read_playlist(&playlist, &sequence) == FR_OK){
+		res = pgm_read_preamble(&sequence);
+		if (res) return res;
+	
+		while( pgm_read_sequence_frame(&sequence) == PGM_LINE_READ_SUCCESSFULLY){
+			pushframe(frameBuffer, 1);
+		}
 	}
 	
 	
@@ -124,7 +125,7 @@ uint8_t pgm_read_playlist( FIL* playlist, FIL* sequence ){
 	UINT br; // Number of bytes read
 	volatile FRESULT fr;
 	
-	// Check if file is actually open, close it if open
+	// Check if sequence file is actually open, close it if open
 	if (sequence){
 		f_close(sequence);
 	}
@@ -132,7 +133,12 @@ uint8_t pgm_read_playlist( FIL* playlist, FIL* sequence ){
 	uint8_t buffer[64]; // Does not support a sequence name longer than 64 characters
 	
 	/* read as much of the playlist file that can fit in the buffer */
-	fr = f_read(playlist, &buffer, 64, &br);
+	// The read operation continues until a '\n' is stored, reached end of the file or the buffer is filled with len - 1 characters.
+	// The read string is terminated with a '\0'.
+	f_gets(&buffer, 64, playlist);
+	fr = f_error(playlist);
+	if (fr) return (int)fr;
+	fr = f_eof(playlist);
 	if (fr) return (int)fr;
 	
 	/* replace newline character with file ending plus string termination so we can use the buffer as a file name */
@@ -148,9 +154,10 @@ uint8_t pgm_read_playlist( FIL* playlist, FIL* sequence ){
 		}
 		i++;
 	}
-	/* Rewind read/write pointer the number of bytes read minus i */
-	//fr = f_lseek(playlist, f_tell(playlist) - (br-i));
-	if (fr) return (int)fr;
+	
+	/* Rewind read/write pointer the number of bytes read minus the lenght of the line read */
+	//fr = f_lseek(playlist, f_tell(playlist) - (br-));
+	//if (fr) return (int)fr;
 	
 	fr = f_open(sequence, buffer, FA_READ);
 	if (fr) return (int)fr;
@@ -223,7 +230,7 @@ uint8_t pgm_read_sequence_frame(FIL* file){
 					}
 					frameBuffer[bulbNo][bulbChannelNo] = dmxbyte;
 					//frameBuffer[bulbNo][bulbChannelNo] = 0xff;
-			
+				
 					if (bulbNo < (NUM_LEDS-1)) {
 						bulbNo++;
 					} else{

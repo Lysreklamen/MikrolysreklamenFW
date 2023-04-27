@@ -30,6 +30,7 @@
 #define AVAIL_MEM 8
 #define BUFFERSIZE  AVAIL_MEM
 
+
 typedef uint8_t uint8_sequencebuffer_t[BUFFERSIZE][NUM_LEDS][3];
 typedef uint8_t uint8_framebuffer_t[NUM_LEDS][3];
 
