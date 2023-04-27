@@ -33,11 +33,13 @@ void setup_rtc( void );
 volatile uint8_t bufferIteratorA = 0;
 volatile uint8_t bufferIteratorB = 0;
 
-volatile uint8_sequencebuffer_t sequenceBuffer;
+//volatile uint8_sequencebuffer_t sequenceBuffer;
 volatile uint8_t *bufferIterator;
 
 volatile uint8_t Timer1;
 volatile uint8_t Timer2;  /* 100Hz decrement timer */
+
+volatile uint8_framebuffer_t frameBuffer;
 
 int main(void)
 {
@@ -45,15 +47,25 @@ int main(void)
 	setupapa();
 	setup_rtc();
 	sei();
-	sdcardtest();
+	//sdcardtest();
 	write_fw_version();
 	
 	/* Register work area to the default drive */
 	f_mount(&FatFs, "", 0);
 	
+	/*
+	for (uint8_t i=0;i<NUM_LEDS;i++){
+		for (uint8_t j=0; j<BULBCHANNELS;j++)
+		{
+			frameBuffer[i][j] = 0;
+		}
+	}
+	*/
+	pushframe(frameBuffer, 1);
 	while (1) {
-		sequence_letterDemo();
-		sequence_digitDemo();
+		pgm_player(&frameBuffer);
+		//sequence_letterDemo();
+		//sequence_digitDemo();
 		//sequence_AuroraDemo();
 		//sequence_Glitter();
 		//sequence_rgbFadeDemo();
