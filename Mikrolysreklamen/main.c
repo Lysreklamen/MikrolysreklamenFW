@@ -26,6 +26,7 @@ FATFS FatFs;
 void setup( void );
 uint8_t sdcardtest( void );
 void setup_rtc( void );
+void rgbtest( void );
 
 //volatile uint8_sequencebuffer_t sequenceBufferA;
 //volatile uint8_sequencebuffer_t sequenceBufferB;
@@ -48,21 +49,21 @@ int main(void)
 	setupapa();
 	setup_rtc();
 	sei();
-	//sdcardtest();
-	write_fw_version();
+	sdcardtest();
+	//write_fw_version();
 	
 	/* Register work area to the default drive */
-	f_mount(&FatFs, "", 0);
+	//f_mount(&FatFs, "", 0);
 	
-	/*
-	for (uint8_t i=0;i<NUM_LEDS;i++){
-		for (uint8_t j=0; j<BULBCHANNELS;j++)
-		{
-			frameBuffer[i][j] = 0;
+	
+	rgbtest();
+		for (uint8_t i=0;i<NUM_LEDS;i++){
+			for (uint8_t j=0; j<BULBCHANNELS;j++)
+			{
+				frameBuffer[i][j] = 100;
+			}
 		}
-	}
-	*/
-	pushframe(frameBuffer, 1);
+		pushframe(frameBuffer, 1);
 	while (1) {
 		pgm_player();
 		//sequence_letterDemo();
@@ -109,6 +110,25 @@ uint8_t sdcardtest(){
 
 	return 0;
 }
+
+void rgbtest( void ){
+	for (int i=0; i< BULBCHANNELS; i++)
+	{
+		for (int k=0; k< NUM_LEDS; k++)
+		{
+			for (int l=0; l<BULBCHANNELS; l++)
+			{
+				frameBuffer[k][l] = 0;
+			}
+		}
+		for (int j=0; j<NUM_LEDS; j++)
+		{
+			frameBuffer[j][i] = 255;
+		}
+		pushframe(frameBuffer, 1);
+		_delay_ms(100);
+	}
+};
 
 /* Writes the FW version (stored in define) to a file on the SD card for debugging (without a debugger) purposes */
 void write_fw_version(void){
