@@ -10,9 +10,10 @@
 #define MIKROLYSREKLAMEN_H_
 
 //#define UKA15
-#define UKA17
+//#define UKA17
 //#define UKA19
 //#define UKA21
+#define UKA23
 //#define ARK100
 
 #define FW_VERSION "0.1.0"
@@ -40,6 +41,10 @@
 
 #ifdef UKA21
 #define NUM_LEDS 83
+#endif
+
+#ifdef UKA23
+#define NUM_LEDS 60
 #endif
 
 #ifdef ARK100

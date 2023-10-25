@@ -127,7 +127,7 @@ void rgbtest( void ){
 			frameBuffer[j][i] = 255;
 		}
 		pushframe(frameBuffer, 1);
-		_delay_ms(100);
+		_delay_ms(1000);
 	}
 };
 
