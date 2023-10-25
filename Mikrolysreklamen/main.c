@@ -16,6 +16,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
+#include <avr/xmega.h>
 
 #define APA_PORT PORTD
 #define CLK_PIN 7
@@ -159,8 +160,9 @@ void setup_clk( void ){
 	OSC_CTRL |= OSC_RC32MEN_bm; // Enable internal 32MHz oscillator
 	while ((OSC_STATUS & OSC_RC32MRDY_bm) == 0)
 	;  // wait for oscillator to finish starting.
-	CPU_CCP = CCP_IOREG_gc;  // tickle the Configuration Change Protection Register
-	CLK_CTRL = CLK_SCLKSEL_RC32M_gc;   // select the 32MHz oscillator as system clock.
+	//CPU_CCP = CCP_IOREG_gc;  // tickle the Configuration Change Protection Register
+	//CLK_CTRL = CLK_SCLKSEL_RC32M_gc;   // select the 32MHz oscillator as system clock.
+	_PROTECTED_WRITE(CLK_CTRL, CLK_SCLKSEL_RC32M_gc);
 }
 
 ISR(RTC_COMP_vect){
