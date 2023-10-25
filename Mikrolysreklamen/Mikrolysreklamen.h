@@ -9,6 +9,12 @@
 #ifndef MIKROLYSREKLAMEN_H_
 #define MIKROLYSREKLAMEN_H_
 
+//#define UKA15
+#define UKA17
+//#define UKA19
+//#define UKA21
+//#define ARK100
+
 #define FW_VERSION "0.1.0"
 #define FW_VERSION_LEN 5
 
@@ -20,7 +26,25 @@
 #define CLK_PIN 7
 #define DATA_PIN 5
 
+#ifdef UKA15
+#define NUM_LEDS 83
+#endif
+
+#ifdef UKA17
 #define NUM_LEDS 82
+#endif
+
+#ifdef UKA19
+#define NUM_LEDS 49
+#endif
+
+#ifdef UKA21
+#define NUM_LEDS 83
+#endif
+
+#ifdef ARK100
+#define NUM_LEDS 42
+#endif
 
 #define BULBCHANNELS 3
 #define RED 0
