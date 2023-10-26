@@ -25,9 +25,11 @@
 FATFS FatFs;
 
 void setup( void );
-uint8_t sdcardtest( void );
+uint8_t sdcardwritetest( void );
+uint8_t sdcardreadtest( void );
 void setup_rtc( void );
 void rgbtest( void );
+void setcolor( uint8_t color );
 
 //volatile uint8_sequencebuffer_t sequenceBufferA;
 //volatile uint8_sequencebuffer_t sequenceBufferB;
@@ -50,14 +52,28 @@ int main(void)
 	setupapa();
 	setup_rtc();
 	sei();
-	sdcardtest();
+	#ifdef TEST
+		sdcardreadtest();
+	#endif
+	//sdcardwritetest();
 	//write_fw_version();
 	
 	/* Register work area to the default drive */
-	//f_mount(&FatFs, "", 0);
+	volatile FRESULT fr;
+	fr = f_mount(&FatFs, "", 0);
+	if (fr !=0 ){
+		setcolor(2);
+		}else{
+		setcolor(1);
+	}
+	_delay_ms(1000);
 	
 	
+	//_delay_ms(1000);
+	
+	#ifndef TEST
 	rgbtest();
+	
 		for (uint8_t i=0;i<NUM_LEDS;i++){
 			for (uint8_t j=0; j<BULBCHANNELS;j++)
 			{
@@ -65,6 +81,7 @@ int main(void)
 			}
 		}
 		pushframe(frameBuffer, 1);
+	#endif
 	while (1) {
 		pgm_player();
 		//sequence_letterDemo();
@@ -87,13 +104,27 @@ void setup ( void ) {
 	PORTC.DIR = (1 << 4) | (1 << 5) | (1 << 7);
 }
 
-uint8_t sdcardtest(){
+uint8_t sdcardreadtest(){
+	FIL fil;
+	volatile FRESULT fr;
+	FIL playlist;
+	fr = f_mount(&FatFs, "", 0);
+	fr = f_open(&playlist, "playlist.txt", FA_READ);
+	if (fr !=0 ){
+		setcolor(0);
+	}else{
+		setcolor(1);
+	}
+	return fr;
+}
+
+uint8_t sdcardwritetest(){
 	FIL fil;
 	char line[100];
 	volatile FRESULT fr;
 	
 	/* Register work area to the default drive */
-	f_mount(&FatFs, "", 0);
+	fr = f_mount(&FatFs, "", 0);
 
 	/* Open a text file */
 	fr = f_open(&fil, "message.txt", FA_READ | FA_WRITE | FA_OPEN_ALWAYS);
@@ -130,6 +161,37 @@ void rgbtest( void ){
 		_delay_ms(1000);
 	}
 };
+
+// 0, 1, or 2 (RGB)
+void setcolor( uint8_t color ){
+	
+	for(uint8_t i = 0; i<3; i++){
+
+		for (int k=0; k< NUM_LEDS; k++)
+		{
+			for (int l=0; l<BULBCHANNELS; l++)
+			{
+				frameBuffer[k][l] = 0;
+			}
+		}
+		for (int j=0; j<NUM_LEDS; j++)
+		{
+			frameBuffer[j][i] = 0;
+		}
+	}
+	for (int k=0; k< NUM_LEDS; k++)
+	{
+		for (int l=0; l<BULBCHANNELS; l++)
+		{
+			frameBuffer[k][l] = 0;
+		}
+	}
+	for (int j=0; j<NUM_LEDS; j++)
+	{
+		frameBuffer[j][color] = 255; // RED?
+	}
+	pushframe(frameBuffer, 1);
+}
 
 /* Writes the FW version (stored in define) to a file on the SD card for debugging (without a debugger) purposes */
 void write_fw_version(void){

@@ -427,16 +427,28 @@ uint16_t bulbMapping[NUM_LEDS][3] = {
 };
 #endif
 
+void set_error_color(uint8_t fr){
+	if (fr !=0 ){
+		setcolor(0);
+		}else{
+		setcolor(1);
+	}
+}
+
 uint8_t pgm_player(){
 	FIL playlist;
 	FIL sequence;
 	volatile FRESULT fr;
 	uint8_t res = 0;
+	_delay_ms(1000);
 	fr = f_open(&playlist, "playlist.txt", FA_READ);
+	// Set red light if error in opening playlist
+	//set_error_color(res);
 	if (fr) return (int)fr;
 	
 	while(pgm_read_playlist(&playlist, &sequence) == FR_OK){
 		res = pgm_read_preamble(&sequence);
+		////set_error_color(res);
 		if (res) return res;
 	
 		while( pgm_read_sequence_frame(&sequence) == PGM_LINE_READ_SUCCESSFULLY){
@@ -454,7 +466,7 @@ uint8_t pgm_player(){
 // Reads the playlist, gets the name of the next sequence, translates to file pointer, then sets the read cursor in the playlist to the start of the next sequence.
 uint8_t pgm_read_playlist( FIL* playlist, FIL* sequence ){
 	UINT br; // Number of bytes read
-	volatile FRESULT fr;
+	volatile FRESULT fr = FR_OK;
 	
 	// Check if sequence file is actually open, close it if open
 	if (sequence){
@@ -467,7 +479,8 @@ uint8_t pgm_read_playlist( FIL* playlist, FIL* sequence ){
 	// The read operation continues until a '\n' is stored, reached end of the file or the buffer is filled with len - 1 characters.
 	// The read string is terminated with a '\0'.
 	f_gets(&buffer, 64, playlist);
-	fr = f_error(playlist);
+	//fr = f_error(playlist);
+	//set_error_color(res);
 	if (fr) return (int)fr;
 	fr = f_eof(playlist);
 	if (fr) return (int)fr;
@@ -491,6 +504,7 @@ uint8_t pgm_read_playlist( FIL* playlist, FIL* sequence ){
 	//if (fr) return (int)fr;
 	
 	fr = f_open(sequence, buffer, FA_READ);
+	//set_error_color(res);
 	if (fr) return (int)fr;
 	
 	//f_close(&fil);

@@ -9,12 +9,13 @@
 #ifndef MIKROLYSREKLAMEN_H_
 #define MIKROLYSREKLAMEN_H_
 
-//#define UKA15
-//#define UKA17
-//#define UKA19
-//#define UKA21
-#define UKA23
+//#define UKA15 // LURIFAX
+//#define UKA17 // Ta-De-Du!
+//#define UKA19 // Vivillé
+//#define UKA21 // Razzmatazz
+#define UKA23 // SPRÆKK
 //#define ARK100
+//#define TEST
 
 #define FW_VERSION "0.1.0"
 #define FW_VERSION_LEN 5

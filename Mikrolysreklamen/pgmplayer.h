@@ -16,7 +16,7 @@
 #define PGM_LINE_READ_SUCCESSFULLY 4
 #define PGM_FILE_ERROR 2
 
-
+void set_error_color(uint8_t fr);
 uint8_t pgm_player( void );
 uint8_t pgm_read_playlist( FIL* playlist, FIL* sequence );
 uint8_t pgm_read_preamble(FIL* file);
